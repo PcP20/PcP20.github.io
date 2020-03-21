@@ -17,7 +17,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pcp20.github.io/assets/img/auto_boxing/002.jpg">
 <meta property="article:published_time" content="2020-03-20T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-03-21T10:40:44.482Z">
+<meta property="article:modified_time" content="2020-03-21T12:18:05.238Z">
 <meta property="article:author" content="PcP20">
 <meta property="article:tag" content="basic">
 <meta name="twitter:card" content="summary">
@@ -203,23 +203,31 @@
 <p><strong>2. String Pool 的需要</strong><br>如果一个 String 对象已经被创建过了，那么就会从 String Pool 中取得引用。只有 String 是不可变的，才可能使用 String Pool。</p>
 <p><strong>3. 安全性</strong><br>String 经常作为参数，String 不可变性可以保证参数不可变。例如在作为网络连接参数的情况下如果 String 是可变的，那么在网络连接过程中，String 被改变，改变 String 的那一方以为现在连接的是其它主机，而实际情况却不一定是。</p>
 <p><strong>4. 线程安全</strong><br>String 不可变性天生具备线程安全，可以在多个线程中安全地使用。</p>
-<h5 id="String-、StringBuffer-and-StringBuilder"><a href="#String-、StringBuffer-and-StringBuilder" class="headerlink" title="String 、StringBuffer and StringBuilder"></a>String 、StringBuffer and StringBuilder</h5><ul>
+<h5 id="区分-String-、StringBuffer-and-StringBuilder"><a href="#区分-String-、StringBuffer-and-StringBuilder" class="headerlink" title="区分 String 、StringBuffer and StringBuilder"></a>区分 String 、StringBuffer and StringBuilder</h5><ul>
 <li>可变性</li>
 </ul>
+<blockquote>
 <p>String 不可变<br>StringBuffer 和 StringBuilder 可变</p>
+</blockquote>
 <ul>
 <li>线程安全</li>
 </ul>
+<blockquote>
 <p>String 不可变，因此是线程安全的<br>StringBuilder 不是线程安全的<br>StringBuffer 是线程安全的，内部使用 synchronized 进行同步</p>
-<h3 id="3-String-Pool"><a href="#3-String-Pool" class="headerlink" title="3. String Pool"></a>3. String Pool</h3><p>字符串常量池（String Pool）保存着所有字符串字面量（literal strings），这些字面量在编译时期就确定。不仅如此，还可以使用 String 的 intern() 方法在运行过程将字符串添加到 String Pool 中。</p>
-<p>当一个字符串调用 intern() 方法时，如果 String Pool 中已经存在一个字符串和该字符串值相等（使用 equals() 方法进行确定），那么就会返回 String Pool 中字符串的引用；否则，就会在 String Pool 中添加一个新的字符串，并返回这个新字符串的引用。</p>
-<p>下面示例中，s1 和 s2 采用 new String() 的方式新建了两个不同字符串，而 s3 和 s4 是通过 s1.intern() 方法取得同一个字符串引用。intern() 首先把 s1 引用的字符串放到 String Pool 中，然后返回这个字符串引用。因此 s3 和 s4 引用的是同一个字符串。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">String s1 = <span class="keyword">new</span> String(<span class="string">"aaa"</span>);</span><br><span class="line">String s2 = <span class="keyword">new</span> String(<span class="string">"aaa"</span>);</span><br><span class="line">System.out.println(s1 == s2);           <span class="comment">// false</span></span><br><span class="line">String s3 = s1.intern();</span><br><span class="line">String s4 = s1.intern();</span><br><span class="line">System.out.println(s3 == s4);           <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="3-String-Pool-重点理解"><a href="#3-String-Pool-重点理解" class="headerlink" title="3. String Pool (重点理解)"></a>3. String Pool (重点理解)</h3><blockquote>
+<p>直接使用双引号声明出来的String对象会直接存储在常量池中。<br>如果不是用双引号声明的String对象，可以使用String提供的intern方法。intern 方法会从字符串常量池中查询当前字符串是否存在，若不存在就会将当前字符串放入常量池中</p>
+</blockquote>
+<blockquote>
+<p>调用intern方法时，如果池中已包含由equals（object）方法确定的与此string对象相等的字符串，则返回池中的字符串引用。否则，此字符串对象将添加到池中，并返回对此字符串对象的引用。</p>
+</blockquote>
+<p>下面示例中，s1 用 new String() 的方式创建了2个对象，<code>第一个对象是存储在常量池中的”abc”字符串对象（前提是常量池中还没有 &quot;abc&quot; 字符串对象），第二个对象 JAVA Heap 中的 String 对象。</code>s2 同理。s1.intern(); 这一句是 s1 对象去常量池中寻找后发现 “abc” 已经在常量池里了。所以返回池中的字符串引用，s3（s4）负责接收。因此 s3 和 s4 的引用指向常量池同一个字符串。当 s2 执行new String(“abc”);时，因为常量池已经存在“abc”了，所以仅在 JAVA Heap 中创建 String 对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">String s1 = <span class="keyword">new</span> String(<span class="string">"abc"</span>);</span><br><span class="line">String s2 = <span class="keyword">new</span> String(<span class="string">"abc"</span>);</span><br><span class="line">System.out.println(s1 == s2);           <span class="comment">// false</span></span><br><span class="line">String s3 = s1.intern();</span><br><span class="line">String s4 = s1.intern();</span><br><span class="line">System.out.println(s3 == s4);           <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 
 <p>如果是采用 “bbb” 这种字面量的形式创建字符串，会自动地将字符串放入 String Pool 中。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String s5 = <span class="string">"bbb"</span>;</span><br><span class="line">String s6 = <span class="string">"bbb"</span>;</span><br><span class="line">System.out.println(s5 == s6);  <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 <p>在 Java 7 之前，String Pool 被放在运行时常量池中，它属于永久代。而在 Java 7，String Pool 被移到堆中。这是因为永久代的空间有限，在大量使用字符串的场景下会导致 OutOfMemoryError(内存溢出) 错误。</p>
-<p><a href="https://tech.meituan.com/2014/03/06/in-depth-understanding-string-intern.html" target="_blank" rel="noopener" title="深入解析String#intern">深入解析String#intern</a></p>
+<p>(￣&lt; ￣)&gt; <a href="https://tech.meituan.com/2014/03/06/in-depth-understanding-string-intern.html" target="_blank" rel="noopener" title="深入解析String#intern">深入解析String#intern</a></p>
 
       
 
