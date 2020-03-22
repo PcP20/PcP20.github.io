@@ -6,22 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://PcP20.github.io">
-  <title>String | PcP20的博客</title>
+  <title>深入理解final | PcP20的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. 应该熟悉的知识点https:&#x2F;&#x2F;github.com&#x2F;CyC2018&#x2F;CS-Notes&#x2F;blob&#x2F;master&#x2F;notes&#x2F;Java%20%E5%9F%BA%E7%A1%80.md#%E4%BA%8Cstring String 被声明为 final，因此它不可被继承。(Integer 等包装类也不能被继承） 在 Java 8 中，String 内部使用 char 数组存储数据。 12345">
+  <meta name="description" content="&amp;emsp;final内容来源  数据  声明数据为常量，可以是编译时常量，也可以是在运行时被初始化后不能被改变的常量。 对于基本类型，final 使数值不变；对于引用类型，final 使引用不变，也就不能引用其它对象，但是被引用的对象本身是可以修改的。 final int x &#x3D; 1; &#x2F;&#x2F; x &#x3D; 2;  &#x2F;&#x2F; cannot assign value to final variable &#39;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="String">
-<meta property="og:url" content="https://pcp20.github.io/2020/03/21/basic/String/index.html">
+<meta property="og:title" content="深入理解final">
+<meta property="og:url" content="https://pcp20.github.io/2020/03/22/basic/Final/index.html">
 <meta property="og:site_name" content="PcP20的博客">
-<meta property="og:description" content="1. 应该熟悉的知识点https:&#x2F;&#x2F;github.com&#x2F;CyC2018&#x2F;CS-Notes&#x2F;blob&#x2F;master&#x2F;notes&#x2F;Java%20%E5%9F%BA%E7%A1%80.md#%E4%BA%8Cstring String 被声明为 final，因此它不可被继承。(Integer 等包装类也不能被继承） 在 Java 8 中，String 内部使用 char 数组存储数据。 12345">
+<meta property="og:description" content="&amp;emsp;final内容来源  数据  声明数据为常量，可以是编译时常量，也可以是在运行时被初始化后不能被改变的常量。 对于基本类型，final 使数值不变；对于引用类型，final 使引用不变，也就不能引用其它对象，但是被引用的对象本身是可以修改的。 final int x &#x3D; 1; &#x2F;&#x2F; x &#x3D; 2;  &#x2F;&#x2F; cannot assign value to final variable &#39;">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://pcp20.github.io/assets/img/auto_boxing/002.jpg">
-<meta property="article:published_time" content="2020-03-20T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-03-22T05:37:02.952Z">
+<meta property="og:image" content="https://pcp20.github.io/assets/img/auto_boxing/003.jpg">
+<meta property="article:published_time" content="2020-03-21T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-03-22T07:29:47.722Z">
 <meta property="article:author" content="PcP20">
 <meta property="article:tag" content="basic">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://pcp20.github.io/assets/img/auto_boxing/002.jpg">
+<meta name="twitter:image" content="https://pcp20.github.io/assets/img/auto_boxing/003.jpg">
   
     <link rel="alternative" href="/atom.xml" title="PcP20的博客" type="application/atom+xml">
   
@@ -153,14 +153,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-basic/String" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-basic/Final" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      String
+      深入理解final
     </h1>
   
 
@@ -172,8 +172,8 @@
         </span>
 	
 
-<a href="/2020/03/21/basic/String/" class="archive-article-date">
-  	<time datetime="2020-03-20T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-21</time>
+<a href="/2020/03/22/basic/Final/" class="archive-article-date">
+  	<time datetime="2020-03-21T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-22</time>
 </a>
 
 	<!-- 开始添加字数统计
@@ -186,49 +186,28 @@
     <div class="article-entry" itemprop="articleBody">
     
       
-        <p><img src="/assets/img/auto_boxing/002.jpg" alt=""></p>
-<h3 id="1-应该熟悉的知识点"><a href="#1-应该熟悉的知识点" class="headerlink" title="1. 应该熟悉的知识点"></a>1. 应该熟悉的知识点</h3><p><a href="https://github.com/CyC2018/CS-Notes/blob/master/notes/Java%20%E5%9F%BA%E7%A1%80.md#%E4%BA%8Cstring" target="_blank" rel="noopener">https://github.com/CyC2018/CS-Notes/blob/master/notes/Java%20%E5%9F%BA%E7%A1%80.md#%E4%BA%8Cstring</a></p>
-<p>String 被声明为 final，因此它不可被继承。(Integer 等包装类也不能被继承）</p>
-<p>在 Java 8 中，String 内部使用 char 数组存储数据。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">String</span></span></span><br><span class="line"><span class="class">    <span class="keyword">implements</span> <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span>, <span class="title">Comparable</span>&lt;<span class="title">String</span>&gt;, <span class="title">CharSequence</span> </span>&#123;</span><br><span class="line">    <span class="comment">/** The value is used for character storage. */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">char</span> value[];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <img src="/assets/img/auto_boxing/003.jpg" width = "500" height = "300" />
 
-
-<a id="more"></a> 
-
-<p>在 Java 9 之后，String 类的实现改用 byte 数组存储字符串，同时使用 coder 来标识使用了哪种编码。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">String</span></span></span><br><span class="line"><span class="class">    <span class="keyword">implements</span> <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span>, <span class="title">Comparable</span>&lt;<span class="title">String</span>&gt;, <span class="title">CharSequence</span> </span>&#123;</span><br><span class="line">    <span class="comment">/** The value is used for character storage. */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">byte</span>[] value;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** The identifier of the encoding used to encode the bytes in &#123;<span class="doctag">@code</span> value&#125;. */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">byte</span> coder;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>value 数组被声明为 final，这意味着 value 数组初始化之后就不能再引用其它数组。并且 String 内部没有改变 value 数组的方法，因此可以保证 String 不可变。</p>
-<h3 id="2-不可变的好处"><a href="#2-不可变的好处" class="headerlink" title="2. 不可变的好处"></a>2. 不可变的好处</h3><p><strong>1. 可以缓存 hash 值</strong><br>因为 String 的 hash 值经常被使用，例如 String 用做 HashMap 的 key。不可变的特性可以使得 hash 值也不可变，因此只需要进行一次计算。</p>
-<p><strong>2. String Pool 的需要</strong><br>如果一个 String 对象已经被创建过了，那么就会从 String Pool 中取得引用。只有 String 是不可变的，才可能使用 String Pool。</p>
-<p><strong>3. 安全性</strong><br>String 经常作为参数，String 不可变性可以保证参数不可变。例如在作为网络连接参数的情况下如果 String 是可变的，那么在网络连接过程中，String 被改变，改变 String 的那一方以为现在连接的是其它主机，而实际情况却不一定是。</p>
-<p><strong>4. 线程安全</strong><br>String 不可变性天生具备线程安全，可以在多个线程中安全地使用。</p>
-<h5 id="区分-String-、StringBuffer-and-StringBuilder"><a href="#区分-String-、StringBuffer-and-StringBuilder" class="headerlink" title="区分 String 、StringBuffer and StringBuilder"></a>区分 String 、StringBuffer and StringBuilder</h5><ul>
-<li>可变性</li>
-</ul>
-<blockquote>
-<p>String 不可变<br>StringBuffer 和 StringBuilder 可变</p>
-</blockquote>
+<p>&emsp;<br><a href="https://github.com/CyC2018/CS-Notes/blob/master/notes/Java%20%E5%9F%BA%E7%A1%80.md#final" target="_blank" rel="noopener">final内容来源</a></p>
 <ul>
-<li>线程安全</li>
+<li>数据</li>
 </ul>
-<blockquote>
-<p>String 不可变，因此是线程安全的<br>StringBuilder 不是线程安全的<br>StringBuffer 是线程安全的，内部使用 synchronized 进行同步</p>
-</blockquote>
-<h3 id="3-String-Pool-重点理解"><a href="#3-String-Pool-重点理解" class="headerlink" title="3. String Pool (重点理解)"></a>3. String Pool (重点理解)</h3><blockquote>
-<p>直接使用双引号声明出来的String对象会直接存储在常量池中。<br>如果不是用双引号声明的String对象，可以使用String提供的intern方法。intern 方法会从字符串常量池中查询当前字符串是否存在，若不存在就会将当前字符串放入常量池中</p>
-</blockquote>
-<blockquote>
-<p>调用intern方法时，如果池中已包含由equals（object）方法确定的与此string对象相等的字符串，则返回池中的字符串引用。否则，此字符串对象将添加到池中，并返回对此字符串对象的引用。</p>
-</blockquote>
-<p>下面示例中，s1 用 new String() 的方式创建了2个对象，<code>第一个对象是存储在常量池中的”abc”字符串对象（前提是常量池中还没有 &quot;abc&quot; 字符串对象），第二个对象 JAVA Heap 中的 String 对象。</code>s2 同理。s1.intern(); 这一句是 s1 对象去常量池中寻找后发现 “abc” 已经在常量池里了。所以返回池中的字符串引用，s3（s4）负责接收。因此 s3 和 s4 的引用指向常量池同一个字符串。当 s2 执行new String(“abc”);时，因为常量池已经存在“abc”了，所以仅在 JAVA Heap 中创建 String 对象</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">String s1 = <span class="keyword">new</span> String(<span class="string">"abc"</span>);</span><br><span class="line">String s2 = <span class="keyword">new</span> String(<span class="string">"abc"</span>);</span><br><span class="line">System.out.println(s1 == s2);           <span class="comment">// false</span></span><br><span class="line">String s3 = s1.intern();</span><br><span class="line">String s4 = s1.intern();</span><br><span class="line">System.out.println(s3 == s4);           <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-
-<p>如果是采用 “bbb” 这种字面量的形式创建字符串，会自动地将字符串放入 String Pool 中。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String s5 = <span class="string">"bbb"</span>;</span><br><span class="line">String s6 = <span class="string">"bbb"</span>;</span><br><span class="line">System.out.println(s5 == s6);  <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-<p>在 Java 7 之前，String Pool 被放在运行时常量池中，它属于永久代。而在 Java 7，String Pool 被移到堆中。这是因为永久代的空间有限，在大量使用字符串的场景下会导致 OutOfMemoryError(内存溢出) 错误。</p>
-<p>(￣&lt; ￣)&gt; <a href="https://tech.meituan.com/2014/03/06/in-depth-understanding-string-intern.html" target="_blank" rel="noopener" title="深入解析String#intern">深入解析String#intern</a></p>
-<p>(￣&lt; ￣)&gt; <a href="https://www.cnblogs.com/xiaoxi/p/6036701.html" target="_blank" rel="noopener">深入理解Java中的String</a></p>
+<p>声明数据为常量，可以是编译时常量，也可以是在运行时被初始化后不能被改变的常量。</p>
+<p>对于基本类型，final 使数值不变；<br>对于引用类型，final 使引用不变，也就不能引用其它对象，但是被引用的对象本身是可以修改的。</p>
+<pre><code class="java"><span class="keyword">final</span> <span class="keyword">int</span> x = <span class="number">1</span>;
+<span class="comment">// x = 2;  // cannot assign value to final variable 'x'</span>
+<span class="keyword">final</span> A y = <span class="keyword">new</span> A();
+y.a = <span class="number">1</span>;</code></pre>
+<ul>
+<li>方法</li>
+</ul>
+<p>声明方法不能被子类重写。</p>
+<p>private 方法隐式地被指定为 final，如果在子类中定义的方法和基类中的一个 private 方法签名相同，此时子类的方法不是重写基类方法，而是在子类中定义了一个新的方法。</p>
+<ul>
+<li>类</li>
+</ul>
+<p>声明类不允许被继承。</p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzI5MzYzMDAwNw==&mid=2247485027&idx=1&sn=f565be7c5ce33e9737d94ce9a58bd0ea&scene=19&token=557705008&lang=zh_CN#wechat_redirect" target="_blank" rel="noopener">final漫画理解</a></p>
 
       
 
@@ -270,18 +249,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/03/22/basic/Final/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          深入理解final
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/03/20/basic/Auto_Un_Boxing/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">装箱和拆箱</div>
+    <a href="/2020/03/21/basic/String/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">String</div>
       <i class="icon-circle-right"></i>
     </a>
   
