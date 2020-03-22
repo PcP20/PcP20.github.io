@@ -17,7 +17,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pcp20.github.io/assets/img/auto_boxing/003.jpg">
 <meta property="article:published_time" content="2020-03-21T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-03-22T07:29:47.722Z">
+<meta property="article:modified_time" content="2020-03-22T08:04:46.055Z">
 <meta property="article:author" content="PcP20">
 <meta property="article:tag" content="basic">
 <meta name="twitter:card" content="summary">
@@ -201,6 +201,9 @@ y.a = <span class="number">1</span>;</code></pre>
 <ul>
 <li>方法</li>
 </ul>
+<blockquote>
+<p>使用 final 方法的原因有两个。第一个原因是把方法锁定，以防任何继承类修改它的含义；第二个原因是效率。在早期的Java实现版本中，会将final方法转为内嵌调用。但是如果方法过于庞大，可能看不到内嵌调用带来的任何性能提升。在最近的 Java 版本中，不需要使用 final 方法进行这些优化了。</p>
+</blockquote>
 <p>声明方法不能被子类重写。</p>
 <p>private 方法隐式地被指定为 final，如果在子类中定义的方法和基类中的一个 private 方法签名相同，此时子类的方法不是重写基类方法，而是在子类中定义了一个新的方法。</p>
 <ul>
