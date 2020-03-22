@@ -17,7 +17,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pcp20.github.io/assets/img/auto_boxing/002.jpg">
 <meta property="article:published_time" content="2020-03-20T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-03-21T12:18:05.238Z">
+<meta property="article:modified_time" content="2020-03-22T05:37:02.952Z">
 <meta property="article:author" content="PcP20">
 <meta property="article:tag" content="basic">
 <meta name="twitter:card" content="summary">
@@ -228,6 +228,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String s5 = <span class="string">"bbb"</span>;</span><br><span class="line">String s6 = <span class="string">"bbb"</span>;</span><br><span class="line">System.out.println(s5 == s6);  <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 <p>在 Java 7 之前，String Pool 被放在运行时常量池中，它属于永久代。而在 Java 7，String Pool 被移到堆中。这是因为永久代的空间有限，在大量使用字符串的场景下会导致 OutOfMemoryError(内存溢出) 错误。</p>
 <p>(￣&lt; ￣)&gt; <a href="https://tech.meituan.com/2014/03/06/in-depth-understanding-string-intern.html" target="_blank" rel="noopener" title="深入解析String#intern">深入解析String#intern</a></p>
+<p>(￣&lt; ￣)&gt; <a href="https://www.cnblogs.com/xiaoxi/p/6036701.html" target="_blank" rel="noopener">深入理解Java中的String</a></p>
 
       
 
