@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://PcP20.github.io">
-  <title>Archives | PcP20的博客</title>
+  <title>由clone引出的 protected 问题 | PcP20的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="PcP20的博客">
-<meta property="og:url" content="https://pcp20.github.io/archives/index.html">
+  <meta name="description" content="&amp;emsp; 1. protected修饰的类和属性,对于自己、本包和其子类可见 第一种情况：子类父类在同一个包下,在相同包时,可以理解protected和public是一样的。  1234567891011package com.A; &#x2F;*注意包的变化*&#x2F;public class Father &amp;#123;    protected int num;    protected void demo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="由clone引出的 protected 问题">
+<meta property="og:url" content="https://pcp20.github.io/2020/03/24/basic/%E7%94%B1clone%E5%BC%95%E5%87%BA%E7%9A%84%20protected%20%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="PcP20的博客">
+<meta property="og:description" content="&amp;emsp; 1. protected修饰的类和属性,对于自己、本包和其子类可见 第一种情况：子类父类在同一个包下,在相同包时,可以理解protected和public是一样的。  1234567891011package com.A; &#x2F;*注意包的变化*&#x2F;public class Father &amp;#123;    protected int num;    protected void demo">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-03-23T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-03-25T01:43:09.031Z">
 <meta property="article:author" content="PcP20">
+<meta property="article:tag" content="basic">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="PcP20的博客" type="application/atom+xml">
@@ -146,37 +151,96 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-basic/由clone引出的 protected 问题" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      由clone引出的 protected 问题
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
+
+        
+        
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读 <span id="busuanzi_value_page_pv"></span>
+        </span>
+	
+
 <a href="/2020/03/24/basic/%E7%94%B1clone%E5%BC%95%E5%87%BA%E7%9A%84%20protected%20%E9%97%AE%E9%A2%98/" class="archive-article-date">
   	<time datetime="2020-03-23T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-24</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/24/basic/%E7%94%B1clone%E5%BC%95%E5%87%BA%E7%9A%84%20protected%20%E9%97%AE%E9%A2%98/">由clone引出的 protected 问题</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
+	<!-- 开始添加字数统计
+        
+	-->
+
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+    
+      
+        <p>&emsp;</p>
+<h3 id="1-protected修饰的类和属性-对于自己、本包和其子类可见"><a href="#1-protected修饰的类和属性-对于自己、本包和其子类可见" class="headerlink" title="1. protected修饰的类和属性,对于自己、本包和其子类可见"></a>1. protected修饰的类和属性,对于自己、本包和其子类可见</h3><ul>
+<li>第一种情况：子类父类在同一个包下,在相同包时,可以理解protected和public是一样的。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.A; <span class="comment">/*注意包的变化*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Father</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">int</span> num;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">demo</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"父类受保护的方法"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a> 
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.A;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Son</span> <span class="keyword">extends</span>  <span class="title">Father</span></span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.A;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Girl</span> <span class="keyword">extends</span> <span class="title">Father</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//(1)子类实例可以访问其从父类继承而来的protected方法</span></span><br><span class="line">        Girl girl = <span class="keyword">new</span> Girl();</span><br><span class="line">        girl.demo(); <span class="comment">//此处的 demo()方法是继承父类的,子类并没有重写</span></span><br><span class="line">        girl.num =<span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">        Son son = <span class="keyword">new</span> Son();</span><br><span class="line">        son.demo();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//(2)父类实例本身的protected方法访问</span></span><br><span class="line">        Father father = <span class="keyword">new</span> Father();</span><br><span class="line">        father.demo(); </span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>第二种情况(***)：子类父类不在同一个包下! 不在同一个包下! 不在同一个包下! 结合注解理解</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.B; <span class="comment">/*注意包的变化*/</span></span><br><span class="line"><span class="keyword">import</span> com.A.Father;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Girl</span> <span class="keyword">extends</span> <span class="title">Father</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//若子类与基类*不在同一包中*，那么**在子类(Girl)中编写代码**,有下面三种情况</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//(1)子类实例可以访问其从基类继承而来的protected方法</span></span><br><span class="line">        Girl girl = <span class="keyword">new</span> Girl();</span><br><span class="line">        girl.demo(); <span class="comment">//正常运行 ，此处的 demo()方法是继承父类的,子类并没有重写</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//(2)基类实例本身的protected方法不能访问</span></span><br><span class="line">        Father father = <span class="keyword">new</span> Father();</span><br><span class="line">        father.demo(); <span class="comment">//Error: java: demo()可以在com.A.Father中访问protected</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//（3）虽然Son跟Girl在同一个包下，但是它是在人家Girl家里调用demo()方法，编译不通过</span></span><br><span class="line">        Son son = <span class="keyword">new</span> Son(); </span><br><span class="line">        son.demo(); <span class="comment">//Error: 'demo()' has protected access in 'com.A.Father'</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>记住前提条件：子类与父类不在同一个包下</code>下面的代码写在 Son类中 ，然后new Son()并调用demo()方法是可以正常运行的；但是在Son类中用新建的Girl对象调用继承父类的demo()方法就会编译不通过。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.B; <span class="comment">/*注意包的变化*/</span></span><br><span class="line"><span class="keyword">import</span> com.A.Father;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Son</span> <span class="keyword">extends</span> <span class="title">Father</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        Son son = <span class="keyword">new</span> Son();</span><br><span class="line">        son.demo(); <span class="comment">//正常运行，此处的 demo()方法是继承父类的,子类并没有重写</span></span><br><span class="line">        </span><br><span class="line">        Girl girl = <span class="keyword">new</span> Girl(); </span><br><span class="line">        girl.demo(); <span class="comment">//Error: java: demo()可以在com.A.Father中访问protected</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果还不理解，再看下面的代码: 在 Test类中 ，子类分别调用demo()方法，同样编译不通过。可以理解为，虽然大家都是兄弟，在自己家搞事情可以，去兄弟家搞事情不行 （逃</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.B;</span><br><span class="line"><span class="keyword">import</span> com.A.Father;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">Father</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        Girl girl = <span class="keyword">new</span> Girl();</span><br><span class="line">        girl.demo(); <span class="comment">//Error: java: demo()可以在com.A.Father中访问protected</span></span><br><span class="line"></span><br><span class="line">        Son son = <span class="keyword">new</span> Son();</span><br><span class="line">        son.demo(); <span class="comment">//Error: java: demo()可以在com.A.Father中访问protected</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>如果想要子类可以执行demo()方法，需要在子类中重写</strong></p>
+<h3 id="2-浅克隆的例子-深克隆由于扩展性的需要，重写父类protected的clone方法便于开发"><a href="#2-浅克隆的例子-深克隆由于扩展性的需要，重写父类protected的clone方法便于开发" class="headerlink" title="2. 浅克隆的例子(深克隆由于扩展性的需要，重写父类protected的clone方法便于开发)"></a>2. 浅克隆的例子(深克隆由于扩展性的需要，重写父类protected的clone方法便于开发)</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.c;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Cloneable是标记型的接口，它们内部都没有方法和属性，实现 Cloneable来表示该对象能被克隆，</span></span><br><span class="line"><span class="comment"> * 能使用Object.clone()方法。如果没有实现 Cloneable的类对象调用clone()就会抛出CloneNotSupportedException。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> <span class="keyword">implements</span> <span class="title">Cloneable</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> num;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Demo</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.num = num;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Demo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</span><br><span class="line">        Demo demo = <span class="keyword">new</span> Demo(<span class="number">100</span>);</span><br><span class="line">        Demo demoClone = (Demo)demo.clone();</span><br><span class="line"></span><br><span class="line">        <span class="comment">/*两个对象的地址是不同的，也就是说创建了新的对象*/</span></span><br><span class="line">        System.out.println(demo); <span class="comment">//com.c.Demo@1b6d3586</span></span><br><span class="line">        System.out.println(demoClone); <span class="comment">//com.c.Demo@4554617c</span></span><br><span class="line"></span><br><span class="line">        System.out.println(demo.num); <span class="comment">// 100</span></span><br><span class="line">        System.out.println(demoClone.num); <span class="comment">// 100</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>克隆有什么好处？</p>
+<ul>
+<li>使用方便：假如要复制一个对象，但这个对象中的部分属性已经被修改过了，如果不使用克隆的话，需要给属性手动赋值，相比克隆而已麻烦很多；</li>
+<li>性能高：查看 clone 方法可以知道，它是 native 方法，native 方法是原生函数，使用操作系统底层的语言实现的，因此执行效率更高；</li>
+<li>隔离性：克隆可以确保对象操作时相互隔离。</li>
+</ul>
+<p>深克隆如何实现？有几种实现方式？</p>
+<ul>
+<li>通过序列化实现深克隆（序列化实现方式：Java 原生序列化、JSON 序列化、Hessian 序列化）；</li>
+<li>所有引用类型都实现克隆，从而实现深克隆。</li>
+<li>调用 Object 类中的 clone() 方法默认是浅克隆，浅克隆只能复制值类型，不能复制引用类型，因此更多的场景下我们需要深克隆，深克隆通常的实现方式有两种：序列化方式或把所有的引用类型都实现克隆。</li>
+</ul>
+<p>为什么不能直接使用 Object 的 Clone 方法，还要重写 clone() 方法之后才能实现克隆？</p>
+<ul>
+<li>虽然所有类都是 Object 的子类，但因为 Object 中的 clone() 方法被声明为 protected 访问级别，所以非 java.lang 包下的其他类是不能直接使用的。因此要想实现克隆功能，就必须实现 Cloneable，并重写 clone() 方法才行。</li>
+</ul>
+<p>序列化可不可以实现深克隆？实现的原理是什么？</p>
+<ul>
+<li>先将原对象序列化到内存的字节流中，再从字节流中反序列化出刚刚存储的对象，这个新对象和原对象就不存在任何地址上的共享，这样就实现了深克隆。</li>
+</ul>
+
+      
+
+    <!-- 版权说明 -->
+	
+	
+	  <div class="declare" hidden="hidden"></div>
+	
+    <!-- 版权说明 -->
+
+
+
+           
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -188,331 +252,55 @@
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/03/23/basic/%E5%85%B3%E4%BA%8E%E7%BB%A7%E6%89%BF/" class="archive-article-date">
-  	<time datetime="2020-03-23T01:27:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-23</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/03/23/basic/%E5%85%B3%E4%BA%8E%E7%BB%A7%E6%89%BF/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">继承知识点概要</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/23/basic/%E5%85%B3%E4%BA%8E%E7%BB%A7%E6%89%BF/">继承知识点概要</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">basic</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/03/22/basic/clone/" class="archive-article-date">
-  	<time datetime="2020-03-22T13:26:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/22/basic/clone/">浅拷贝深拷贝</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">basic</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/03/22/basic/hashCode/" class="archive-article-date">
-  	<time datetime="2020-03-22T12:06:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/22/basic/hashCode/">hashCode()</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">basic</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/03/22/basic/Static/" class="archive-article-date">
-  	<time datetime="2020-03-22T08:06:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/22/basic/Static/">Static</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">basic</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/03/22/basic/Final/" class="archive-article-date">
-  	<time datetime="2020-03-22T07:06:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/22/basic/Final/">深入理解final</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">basic</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/03/21/basic/String/" class="archive-article-date">
-  	<time datetime="2020-03-20T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/21/basic/String/">String</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">basic</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/03/20/basic/Auto_Un_Boxing/" class="archive-article-date">
-  	<time datetime="2020-03-19T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/20/basic/Auto_Un_Boxing/">装箱和拆箱</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">basic</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/03/18/basic/Hi/" class="archive-article-date">
-  	<time datetime="2020-03-17T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/18/basic/Hi/">你好</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">notes</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -540,8 +328,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

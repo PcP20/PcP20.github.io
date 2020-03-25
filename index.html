@@ -49,7 +49,7 @@
 		  <h1 class="header-author"><a href="/">PcP20</a></h1>
 		</hgroup>
 		
-		<p class="header-subtitle">在坎坷的路骑我二流摩托车</p>
+		<p class="header-subtitle">骑着我心爱的小摩托</p>
 		
 
 		<nav class="header-menu">
@@ -103,7 +103,7 @@
 			  <h1 class="header-author js-header-author">PcP20</h1>
 			</hgroup>
 			
-			<p class="header-subtitle"><i class="icon icon-quo-left"></i>在坎坷的路骑我二流摩托车<i class="icon icon-quo-right"></i></p>
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>骑着我心爱的小摩托<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -148,6 +148,100 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-basic/由clone引出的 protected 问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/24/basic/%E7%94%B1clone%E5%BC%95%E5%87%BA%E7%9A%84%20protected%20%E9%97%AE%E9%A2%98/">由clone引出的 protected 问题</a>
+    </h1>
+  
+
+        
+        
+<a href="/2020/03/24/basic/%E7%94%B1clone%E5%BC%95%E5%87%BA%E7%9A%84%20protected%20%E9%97%AE%E9%A2%98/" class="archive-article-date">
+  	<time datetime="2020-03-23T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-24</time>
+</a>
+
+	<!-- 开始添加字数统计
+        
+	-->
+
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+    
+      
+        <p>&emsp;</p>
+<h3 id="1-protected修饰的类和属性-对于自己、本包和其子类可见"><a href="#1-protected修饰的类和属性-对于自己、本包和其子类可见" class="headerlink" title="1. protected修饰的类和属性,对于自己、本包和其子类可见"></a>1. protected修饰的类和属性,对于自己、本包和其子类可见</h3><ul>
+<li>第一种情况：子类父类在同一个包下,在相同包时,可以理解protected和public是一样的。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.A; <span class="comment">/*注意包的变化*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Father</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">int</span> num;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">demo</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"父类受保护的方法"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+      
+
+    <!-- 版权说明 -->
+	
+	
+	  <div class="declare" hidden="hidden"></div>
+	
+    <!-- 版权说明 -->
+
+
+
+           
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">basic</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/24/basic/%E7%94%B1clone%E5%BC%95%E5%87%BA%E7%9A%84%20protected%20%E9%97%AE%E9%A2%98/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-basic/关于继承" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -175,7 +269,8 @@
     <div class="article-entry" itemprop="articleBody">
     
       
-        <h3 id="1-访问权限-public-private-default-protected"><a href="#1-访问权限-public-private-default-protected" class="headerlink" title="1.  访问权限 public private default protected"></a>1.  访问权限 public private default protected</h3><p>不写时默认为default。默认对于同一个包中的其他类相当于公开（public），对于不是同一个包中的其他类相当于私有（private）。受保护（protected）对子类相当于公开，对不是同一包中的没有父子关系的类相当于私有。 不可以覆盖private的方法，<u>因为private修饰的变量和方法只能在当前类中使用</u>，如果是其他的类继承当前类是不能访问到private变量或方法的，当然也不能覆盖</p>
+        <p>&emsp;</p>
+<h3 id="1-访问权限-public-private-default-protected"><a href="#1-访问权限-public-private-default-protected" class="headerlink" title="1.  访问权限 public private default protected"></a>1.  访问权限 public private default protected</h3><p>不写时默认为default。默认对于同一个包中的其他类相当于公开（public），对于不是同一个包中的其他类相当于私有（private）。受保护（protected）对子类相当于公开，对不是同一包中的没有父子关系的类相当于私有。 不可以覆盖private的方法，<u>因为private修饰的变量和方法只能在当前类中使用</u>，如果是其他的类继承当前类是不能访问到private变量或方法的，当然也不能覆盖</p>
         
       
 
