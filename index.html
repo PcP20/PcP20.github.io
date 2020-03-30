@@ -148,6 +148,98 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-basic/basic-plus/Vector" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/30/basic/basic-plus/Vector/">Vector</a>
+    </h1>
+  
+
+        
+        
+<a href="/2020/03/30/basic/basic-plus/Vector/" class="archive-article-date">
+  	<time datetime="2020-03-30T10:09:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-30</time>
+</a>
+
+	<!-- 开始添加字数统计
+        
+	-->
+
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+    
+      
+        <p>&emsp;</p>
+<h3 id="1-同步"><a href="#1-同步" class="headerlink" title="1. 同步"></a>1. 同步</h3><p>它的实现与 ArrayList 类似，但是使用了 synchronized 进行同步。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Appends the specified element to the end of this Vector.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> e element to be appended to this Vector</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> &#123;<span class="doctag">@code</span> true&#125; (as specified by &#123;<span class="doctag">@link</span> Collection#add&#125;)</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@since</span> 1.2</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">boolean</span> <span class="title">add</span><span class="params">(E e)</span> </span>&#123;</span><br><span class="line">        modCount++;</span><br><span class="line">        ensureCapacityHelper(elementCount + <span class="number">1</span>);</span><br><span class="line">        elementData[elementCount++] = e;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+        
+      
+
+    <!-- 版权说明 -->
+	
+	
+	  <div class="declare" hidden="hidden"></div>
+	
+    <!-- 版权说明 -->
+
+
+
+           
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">basic-plus</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/30/basic/basic-plus/Vector/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-basic/basic-plus/ArrayList" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -981,118 +1073,9 @@
 
 
   
-    <article id="post-basic/Final" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/22/basic/Final/">深入理解final</a>
-    </h1>
-  
-
-        
-        
-<a href="/2020/03/22/basic/Final/" class="archive-article-date">
-  	<time datetime="2020-03-22T07:06:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-22</time>
-</a>
-
-	<!-- 开始添加字数统计
-        
-	-->
-
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-    
-      
-        <p>&emsp;<br><a href="https://github.com/CyC2018/CS-Notes/blob/master/notes/Java%20%E5%9F%BA%E7%A1%80.md#final" target="_blank" rel="noopener">final内容来源</a></p>
-<ul>
-<li>数据</li>
-</ul>
-<p>声明数据为常量，可以是编译时常量，也可以是在运行时被初始化后不能被改变的常量。</p>
-<p>对于基本类型，final 使数值不变；<br>对于引用类型，final 使引用不变，也就不能引用其它对象，但是被引用的对象本身是可以修改的。</p>
-<pre><code class="java"><span class="keyword">final</span> <span class="keyword">int</span> x = <span class="number">1</span>;
-<span class="comment">// x = 2;  // cannot assign value to final variable 'x'</span>
-<span class="keyword">final</span> A y = <span class="keyword">new</span> A();
-y.a = <span class="number">1</span>;</code></pre>
-<ul>
-<li>方法</li>
-</ul>
-<p>声明方法不能被子类重写。</p>
-<p>private 方法隐式地被指定为 final，如果在子类中定义的方法和基类中的一个 private 方法签名相同，此时子类的方法不是重写基类方法，而是在子类中定义了一个新的方法。</p>
-<ul>
-<li>类</li>
-</ul>
-<p>声明类不允许被继承。</p>
-<p><a href="https://mp.weixin.qq.com/s?__biz=MzI5MzYzMDAwNw==&mid=2247485027&idx=1&sn=f565be7c5ce33e9737d94ce9a58bd0ea&scene=19&token=557705008&lang=zh_CN#wechat_redirect" target="_blank" rel="noopener">final漫画理解</a></p>
-
-      
-
-    <!-- 版权说明 -->
-	
-	
-	  <div class="declare" hidden="hidden"></div>
-	
-    <!-- 版权说明 -->
-
-
-
-           
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">basic</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/22/basic/Final/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next</a>
     </nav>
   
 
